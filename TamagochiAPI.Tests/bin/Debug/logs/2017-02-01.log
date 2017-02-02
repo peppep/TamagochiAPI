@@ -1,0 +1,21 @@
+2017-02-01 00:02:45.4891 INFO User with nickname: test_user added
+2017-02-01 00:02:45.5541 WARN Trying create user with name: test_user. The name is in use
+2017-02-01 00:02:45.5541 WARN Trying to login with userId: 1. User not found
+2017-02-01 00:02:45.5696 INFO User userId: 1 session started
+2017-02-01 00:06:28.6447 INFO User with nickname: test_user added
+2017-02-01 00:06:28.7247 WARN Trying create user with name: test_user. The name is in use
+2017-02-01 00:06:28.7247 WARN Trying to login with userId: 1. User not found
+2017-02-01 00:06:28.7407 WARN User with userId: 1 not found
+2017-02-01 00:06:28.7407 INFO User userId: 1 session started
+2017-02-01 00:08:04.5813 INFO User with nickname: test_user added
+2017-02-01 00:08:04.6448 WARN Trying create user with name: test_user. The name is in use
+2017-02-01 00:08:04.6448 WARN Trying to login with userId: 1. User not found
+2017-02-01 00:08:04.6628 WARN Trying to get userInfo for userId: 1. Session is closed
+2017-02-01 00:08:04.6628 WARN User with userId: 1 not found
+2017-02-01 00:08:04.6791 INFO User userId: 1 session started
+2017-02-01 00:34:55.6676 INFO User with nickname: test_user added
+2017-02-01 00:34:55.7036 WARN Trying create user with name: test_user. The name is in use
+2017-02-01 00:34:55.7417 WARN Trying to login with userId: 1. User not found
+2017-02-01 00:34:55.7417 WARN Trying to get userInfo for userId: 1. Session is closed
+2017-02-01 00:34:55.7727 WARN User with userId: 1 not found
+2017-02-01 00:34:55.7847 INFO User userId: 1 session started

@@ -1,0 +1,9 @@
+D:\proj\TamagochiAPI\DAL.TamagochiAPI\bin\Debug\NLog.config
+D:\proj\TamagochiAPI\DAL.TamagochiAPI\bin\Debug\DAL.TamagochiAPI.dll
+D:\proj\TamagochiAPI\DAL.TamagochiAPI\bin\Debug\DAL.TamagochiAPI.pdb
+D:\proj\TamagochiAPI\DAL.TamagochiAPI\bin\Debug\TamagochiAPI.DAL.SQLite.dll
+D:\proj\TamagochiAPI\DAL.TamagochiAPI\bin\Debug\System.Data.SQLite.dll
+D:\proj\TamagochiAPI\DAL.TamagochiAPI\bin\Debug\TamagochiAPI.DAL.SQLite.pdb
+D:\proj\TamagochiAPI\DAL.TamagochiAPI\bin\Debug\System.Data.SQLite.xml
+D:\proj\TamagochiAPI\DAL.TamagochiAPI\obj\Debug\DAL.TamagochiAPI.dll
+D:\proj\TamagochiAPI\DAL.TamagochiAPI\obj\Debug\DAL.TamagochiAPI.pdb

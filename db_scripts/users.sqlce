@@ -1,0 +1,9 @@
+﻿-- Script Date: 17-Jan-17 9:42 PM  - ErikEJ.SqlCeScripting version 3.5.2.64
+CREATE TABLE [Users] (
+  [Id] bigint IDENTITY (1,1) NOT NULL
+, [Name] nvarchar(20) NOT NULL
+, [LastLogin] datetime NOT NULL
+);
+GO
+ALTER TABLE [Users] ADD CONSTRAINT [PK_Users] PRIMARY KEY ([Id]);
+GO

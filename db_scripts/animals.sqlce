@@ -1,0 +1,12 @@
+﻿-- Script Date: 17-Jan-17 9:39 PM  - ErikEJ.SqlCeScripting version 3.5.2.64
+CREATE TABLE [Animals] (
+  [Id] bigint IDENTITY (1,1) NOT NULL
+, [Name] nvarchar(20) NOT NULL
+, [OwnerId] bigint NOT NULL
+, [Type] int NOT NULL
+, [HappinesLevel] int DEFAULT 0 NOT NULL
+, [HungryLevel] int DEFAULT 0 NOT NULL
+);
+GO
+ALTER TABLE [Animals] ADD CONSTRAINT [PK_Animals] PRIMARY KEY ([Id]);
+GO

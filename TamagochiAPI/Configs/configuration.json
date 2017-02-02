@@ -1,0 +1,23 @@
+﻿{
+	"HappinessDecreaseStepSec": {
+		"Dog": 10,
+		"Cat": 5,
+		"Hamster": 10,
+		"Fish": 0,
+		"Snake": 0
+	},
+
+	"HungryDecreaseStepSec": {
+		"Dog": 5,
+		"Cat": 10,
+		"Hamster": 10,
+		"Fish": 5,
+		"Snake": 1
+	},
+
+	"DefaultHungryLevel": 0,
+
+	"DefaultHappinessLevel": 100,
+
+	"SessionTimeSec": 300
+}
