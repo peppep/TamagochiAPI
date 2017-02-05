@@ -6,7 +6,6 @@ D:\proj\TamagochiAPI\DAL.SQLite.TamagochiAPI\bin\Debug\System.Data.SQLite.Linq.d
 D:\proj\TamagochiAPI\DAL.SQLite.TamagochiAPI\bin\Debug\EntityFramework.xml
 D:\proj\TamagochiAPI\DAL.SQLite.TamagochiAPI\bin\Debug\EntityFramework.SqlServer.xml
 D:\proj\TamagochiAPI\DAL.SQLite.TamagochiAPI\bin\Debug\System.Data.SQLite.xml
-D:\proj\TamagochiAPI\DAL.SQLite.TamagochiAPI\obj\Debug\TamagochiAPI.DAL.SQLite.csprojResolveAssemblyReference.cache
 D:\proj\TamagochiAPI\DAL.SQLite.TamagochiAPI\bin\Debug\TamagochiAPI.DAL.SQLite.dll.config
 D:\proj\TamagochiAPI\DAL.SQLite.TamagochiAPI\bin\Debug\TamagochiAPI.DAL.SQLite.dll
 D:\proj\TamagochiAPI\DAL.SQLite.TamagochiAPI\bin\Debug\TamagochiAPI.DAL.SQLite.pdb

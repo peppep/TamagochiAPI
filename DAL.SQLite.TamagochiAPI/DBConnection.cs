@@ -19,7 +19,7 @@ namespace TamagochiAPI.DAL.SQLite
 		{
 		}
 
-		public SQLiteConnection Connection
+		public SQLiteConnection SQLiteConnection
 		{
 			get
 			{
@@ -29,39 +29,28 @@ namespace TamagochiAPI.DAL.SQLite
 			}
 		}
 
-		public static void ExecuteScalar(string query)
+		private static DBConnection DbConnection
 		{
-			using (var conn = new SQLiteConnection(ConnectionString))
+			get
 			{
-				var cmd = conn.CreateCommand();
-				cmd.CommandText = query;
-				var res = cmd.ExecuteScalar();
-			}
-		}
-
-		public static T ExecuteScalar<T>(string query) where T : IDBSerializer<T>, new()
-		{
-			var res = new T();
-			using (var conn = GetConnection().Connection)
-			{
-				using (var cmd = new SQLiteCommand(query, conn))
+				if (m_dbConnection == null)
 				{
-					try
+					lock (m_lock)
 					{
-						cmd.ExecuteScalar();
-					}
-					catch (SQLiteException ex)
-					{
-						Console.WriteLine(ex.Message);
+						if (m_dbConnection == null)
+						{
+							m_dbConnection = new DBConnection();
+						}
 					}
 				}
+
+				return m_dbConnection;
 			}
-			return res;
 		}
 
 		public static async void ExecuteNonQuery(string query)
 		{
-			using (var conn = GetConnection().Connection)
+			using (var conn = DbConnection.SQLiteConnection)
 			{
 				using (var cmd = new SQLiteCommand(query, conn))
 				{
@@ -81,7 +70,7 @@ namespace TamagochiAPI.DAL.SQLite
 		public static async Task<IEnumerable<T>> ExecuteReader<T>(string query) where T : IDBSerializer<T>, new()
 		{
 			var res = new List<T>();
-			using (var conn = GetConnection().Connection)
+			using (var conn = DbConnection.SQLiteConnection)
 			{
 				using (var cmd = new SQLiteCommand(query, conn))
 				{
@@ -105,22 +94,6 @@ namespace TamagochiAPI.DAL.SQLite
 			}
 
 			return res;
-		}
-
-		private static DBConnection GetConnection()
-		{
-			if(m_dbConnection == null)
-			{
-				lock(m_lock)
-				{
-					if(m_dbConnection == null)
-					{
-						m_dbConnection = new DBConnection();
-					}
-				}
-			}
-
-			return m_dbConnection;
 		}
 	}
 }
