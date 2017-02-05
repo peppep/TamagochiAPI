@@ -7,13 +7,13 @@ namespace TamagochiAPI.Configs
 {
 	public enum ConfigKeys
 	{
-		HappinessDecreaseStepSec,
-		HungryDecreaseStepSec,
+		HappinessStep,
+		HungerStep,
 		SessionTimeSec,
 		DefaultHungryLevel,
 		DefaultHappinessLevel,
-		MinThreshold,
-		MaxThreshold
+		StatsMinLevel,
+		StatsMaxLevel
 	}
 
 	public interface IConfigService

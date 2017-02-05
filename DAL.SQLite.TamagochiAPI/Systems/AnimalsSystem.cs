@@ -11,7 +11,8 @@ namespace TamagochiAPI.DAL.SQLite.Systems
 		Animal GetAnimalById(uint animalId);
 		Animal GetAnimalByName(string animalName);
 		void AddAnimal(Animal animal);
-		void Feed(uint animalId, int food);
+		void Feed(uint animalId, int hungerLevel);
+		void Play(uint animalId, int happinessLevel);
 	}
 
 	public class AnimalsSystem : IAnimalsSystem
@@ -32,9 +33,9 @@ namespace TamagochiAPI.DAL.SQLite.Systems
 			DBConnection.ExecuteNonQuery(cmd);
 		}
 
-		public void Feed(uint animalId, int food)
+		public void Feed(uint animalId, int hungerLevel)
 		{
-			var cmd = string.Format("update animals set hungry_level = {0}, last_feed_time = '{1}' where id = {2}", food, DateTime.UtcNow, animalId);
+			var cmd = string.Format("update animals set hungry_level = {0}, last_feed_time = '{1}' where id = {2}", hungerLevel, DateTime.UtcNow, animalId);
 			DBConnection.ExecuteNonQuery(cmd);
 		}
 
@@ -54,6 +55,12 @@ namespace TamagochiAPI.DAL.SQLite.Systems
 		{
 			var cmd = "select * from animals";
 			return DBConnection.ExecuteReader<Animal>(cmd).Result;
+		}
+
+		public void Play(uint animalId, int happinessLevel)
+		{
+			var cmd = string.Format("update animals set happines_level = {0}, last_play_time = '{1}' where id = {2}", happinessLevel, DateTime.UtcNow, animalId);
+			DBConnection.ExecuteNonQuery(cmd);
 		}
 	}
 }

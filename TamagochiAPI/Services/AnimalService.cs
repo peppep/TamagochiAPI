@@ -16,6 +16,12 @@ namespace TamagochiAPI.Services
 		ResultInfo<KeyValue> Play(uint userId, uint animalId);
 	}
 
+	enum OperationType
+	{
+		Feed,
+		Play
+	}
+
 	public class AnimalService : IAnimalService
 	{
 		private readonly IAnimalsWrapper m_animalsWrapper;
@@ -39,26 +45,18 @@ namespace TamagochiAPI.Services
 				return res;
 			}
 
-			var hungryLevelStep = m_configService.GetConfigValue<int>(
-				ConfigKeys.HungryDecreaseStepSec,
+			var hungerStep = m_configService.GetConfigValue<int>(
+				ConfigKeys.HungerStep,
 				animalInfo.Type);
 
-			var minLevel = m_configService.GetConfigValue<int>(ConfigKeys.MinThreshold);
+			var stat = CalculateStat(animalInfo, hungerStep, OperationType.Feed);
 
-			var timeSinceLastFeed = DateTime.UtcNow - animalInfo.LastFeedTime;
-			var pointsToDecrease = timeSinceLastFeed.TotalSeconds / hungryLevelStep;
+			m_animalsWrapper.Feed(animalId, stat.Value);
 
-			int currentHungryLevel = (int)(animalInfo.HungryLevel - pointsToDecrease + hungryLevelStep);
-			if(currentHungryLevel < minLevel)
-			{
-				currentHungryLevel = minLevel;
-			}
-
-			m_animalsWrapper.Feed(animalId, currentHungryLevel);
-
+			res.AddData(stat);
 			return res;
 		}
-		
+
 		public ResultInfo<KeyValue> Play(uint userId, uint animalId)
 		{
 			var res = new ResultInfo<KeyValue>();
@@ -69,6 +67,15 @@ namespace TamagochiAPI.Services
 				return res;
 			}
 
+			var happinessStep = m_configService.GetConfigValue<int>(
+				ConfigKeys.HappinessStep,
+				animalInfo.Type);
+			
+			var stat = CalculateStat(animalInfo, happinessStep, OperationType.Play);
+
+			m_animalsWrapper.Play(animalId, stat.Value);
+
+			res.AddData(stat);
 			return res;
 		}
 
@@ -156,6 +163,40 @@ namespace TamagochiAPI.Services
 				LastFeedTime = DateTime.UtcNow,
 				LastPlayTime = DateTime.UtcNow
 			};
+		}
+
+		private KeyValue CalculateStat(Animal animalInfo, int statsStep, OperationType type)
+		{
+			var res = new KeyValue { Name = type.ToString() };
+
+			var minLevel = m_configService.GetConfigValue<int>(ConfigKeys.StatsMinLevel);
+			var maxLevel = m_configService.GetConfigValue<int>(ConfigKeys.StatsMaxLevel);
+
+			var timeSinceLastAction = DateTime.UtcNow - animalInfo.LastFeedTime;
+			var changePoints = timeSinceLastAction.TotalSeconds / (statsStep * 10);
+
+			int resultStat = 0;
+			if (type == OperationType.Feed)
+			{
+				resultStat = (int)(animalInfo.HungryLevel - changePoints + statsStep);
+			}
+			else if (type == OperationType.Play)
+			{
+				resultStat = (int)(animalInfo.HappinessLevel - changePoints + statsStep);
+			}
+
+			if (resultStat < minLevel)
+			{
+				resultStat = minLevel;
+			}
+			if (resultStat > maxLevel)
+			{
+				resultStat = maxLevel;
+			}
+
+			res.Value = resultStat;
+
+			return res;
 		}
 	}
 }

@@ -1,18 +1,18 @@
 ﻿{
-	"HappinessDecreaseStepSec": {
-		"Dog": 10,
+	"HappinessStep": {
+		"Dog": 1,
 		"Cat": 5,
-		"Hamster": 10,
-		"Fish": 0,
-		"Snake": 0
+		"Hamster": 5,
+		"Fish": 10,
+		"Snake": 10
 	},
 
-	"HungryDecreaseStepSec": {
+	"HungerStep": {
 		"Dog": 5,
-		"Cat": 10,
-		"Hamster": 10,
-		"Fish": 5,
-		"Snake": 1
+		"Cat": 5,
+		"Hamster": 1,
+		"Fish": 3,
+		"Snake": 10
 	},
 
 	"DefaultHungryLevel": 0,
@@ -21,7 +21,7 @@
 
 	"SessionTimeSec": 300,
 
-	"MinThreshold": -100,
+	"StatsMinLevel": -100,
 
-	"MaxThreshold": 100
+	"StatsMaxLevel": 100
 }
