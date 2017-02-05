@@ -7,8 +7,8 @@
     <ProjectGuid>{3BBEE4A6-3BE1-4F71-BBF3-78187054BC09}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DAL.TamagochiAPI</RootNamespace>
-    <AssemblyName>DAL.TamagochiAPI</AssemblyName>
+    <RootNamespace>TamagochiAPI.DAL</RootNamespace>
+    <AssemblyName>TamagochiAPI.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
