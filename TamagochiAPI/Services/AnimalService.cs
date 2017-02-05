@@ -172,16 +172,17 @@ namespace TamagochiAPI.Services
 			var minLevel = m_configService.GetConfigValue<int>(ConfigKeys.StatsMinLevel);
 			var maxLevel = m_configService.GetConfigValue<int>(ConfigKeys.StatsMaxLevel);
 
-			var timeSinceLastAction = DateTime.UtcNow - animalInfo.LastFeedTime;
-			var changePoints = timeSinceLastAction.TotalSeconds / (statsStep * 10);
-
 			int resultStat = 0;
 			if (type == OperationType.Feed)
 			{
+				var timeSinceLastAction = DateTime.UtcNow - animalInfo.LastFeedTime;
+				var changePoints = timeSinceLastAction.TotalSeconds / statsStep;
 				resultStat = (int)(animalInfo.HungryLevel - changePoints + statsStep);
 			}
 			else if (type == OperationType.Play)
 			{
+				var timeSinceLastAction = DateTime.UtcNow - animalInfo.LastPlayTime;
+				var changePoints = timeSinceLastAction.TotalSeconds / statsStep;
 				resultStat = (int)(animalInfo.HappinessLevel - changePoints + statsStep);
 			}
 

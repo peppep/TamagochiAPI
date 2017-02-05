@@ -49,3 +49,8 @@ Temporary Items
 *.pdb
 *.cache
 *.tmp
+*.dll
+*.pdb
+*.txt
+*.log
+*.suo
