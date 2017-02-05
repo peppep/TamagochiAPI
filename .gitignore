@@ -54,3 +54,9 @@ Temporary Items
 *.txt
 *.log
 *.suo
+
+#directories
+/logs/
+/packages/
+/bin/
+/obj/
