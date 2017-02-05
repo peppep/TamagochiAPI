@@ -19,5 +19,9 @@
 
 	"DefaultHappinessLevel": 100,
 
-	"SessionTimeSec": 300
+	"SessionTimeSec": 300,
+
+	"MinThreshold": -100,
+
+	"MaxThreshold": 100
 }

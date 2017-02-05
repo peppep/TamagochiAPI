@@ -40,17 +40,25 @@ namespace TamagochiAPI.Services
 			}
 
 			var hungryLevelStep = m_configService.GetConfigValue<int>(
-				ConfigKeys.HungryDecreaseStepSec.ToString(),
-				animalInfo.Type.ToString());
+				ConfigKeys.HungryDecreaseStepSec,
+				animalInfo.Type);
+
+			var minLevel = m_configService.GetConfigValue<int>(ConfigKeys.MinThreshold);
 
 			var timeSinceLastFeed = DateTime.UtcNow - animalInfo.LastFeedTime;
 			var pointsToDecrease = timeSinceLastFeed.TotalSeconds / hungryLevelStep;
 
-			var currentHungryLevel = animalInfo.HungryLevel - pointsToDecrease;
+			int currentHungryLevel = (int)(animalInfo.HungryLevel - pointsToDecrease + hungryLevelStep);
+			if(currentHungryLevel < minLevel)
+			{
+				currentHungryLevel = minLevel;
+			}
+
+			m_animalsWrapper.Feed(animalId, currentHungryLevel);
 
 			return res;
 		}
-
+		
 		public ResultInfo<KeyValue> Play(uint userId, uint animalId)
 		{
 			var res = new ResultInfo<KeyValue>();
@@ -143,8 +151,8 @@ namespace TamagochiAPI.Services
 				Name = name,
 				OwnerId = ownerId,
 				Type = type,
-				HappinessLevel = m_configService.GetConfigValue<int>(ConfigKeys.DefaultHappinessLevel.ToString()),
-				HungryLevel = m_configService.GetConfigValue<int>(ConfigKeys.DefaultHungryLevel.ToString()),
+				HappinessLevel = m_configService.GetConfigValue<int>(ConfigKeys.DefaultHappinessLevel),
+				HungryLevel = m_configService.GetConfigValue<int>(ConfigKeys.DefaultHungryLevel),
 				LastFeedTime = DateTime.UtcNow,
 				LastPlayTime = DateTime.UtcNow
 			};

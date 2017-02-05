@@ -10,6 +10,7 @@ namespace TamagochiAPI.DAL.Wrappers
 		IEnumerable<Animal> GetAnimals();
 		Animal GetAnimalByName(string name);
 		Animal GetAnimalById(uint animalId);
+		void Feed(uint animalId, int food);
 	}
 
 	public class AnimalsWrapper : IAnimalsWrapper
@@ -24,6 +25,11 @@ namespace TamagochiAPI.DAL.Wrappers
 		public void AddAnimal(Animal animal)
 		{
 			m_animalSystem.AddAnimal(animal);
+		}
+
+		public void Feed(uint animalId, int food)
+		{
+			m_animalSystem.Feed(animalId, food);
 		}
 
 		public Animal GetAnimalById(uint animalId)

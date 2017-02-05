@@ -11,6 +11,7 @@ namespace TamagochiAPI.DAL.SQLite.Systems
 		Animal GetAnimalById(uint animalId);
 		Animal GetAnimalByName(string animalName);
 		void AddAnimal(Animal animal);
+		void Feed(uint animalId, int food);
 	}
 
 	public class AnimalsSystem : IAnimalsSystem
@@ -28,6 +29,12 @@ namespace TamagochiAPI.DAL.SQLite.Systems
 				animal.HungryLevel,
 				animal.LastFeedTime.ToString()
 				);
+			DBConnection.ExecuteNonQuery(cmd);
+		}
+
+		public void Feed(uint animalId, int food)
+		{
+			var cmd = string.Format("update animals set hungry_level = {0}, last_feed_time = '{1}' where id = {2}", food, DateTime.UtcNow, animalId);
 			DBConnection.ExecuteNonQuery(cmd);
 		}
 

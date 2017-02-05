@@ -61,5 +61,22 @@ namespace TamagochiAPI.Tests.Services
 			m_animalsWrapper.Received().AddAnimal(Arg.Any<Animal>());
 			Assert.AreEqual(ResultCode.Ok, res.ResultCode);
 		}
+
+		[Test]
+		public void ShouldReturnAnimal()
+		{
+			m_animalsWrapper.GetAnimalById(Arg.Any<uint>()).Returns(new Animal());
+
+			var res = m_animalService.GetAnimal(AnimalId);
+			Assert.AreEqual(ResultCode.Ok, res.ResultCode);
+		}
+
+		[Test]
+		public void ShouldReturnAnimalNotFound()
+		{
+			var res = m_animalService.GetAnimal(AnimalId);
+			Assert.IsTrue(res.IsEmpty());
+			Assert.AreEqual(ResultCode.AnimalNotFound, res.ResultCode);
+		}
 	}
 }

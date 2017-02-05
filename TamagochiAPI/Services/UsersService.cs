@@ -101,7 +101,7 @@ namespace TamagochiAPI.Services
 				return ResultCode.UserNotFound;
 			}
 
-			var sessionTimeoutSec = m_configService.GetConfigValue<uint>(ConfigKeys.SessionTimeSec.ToString());
+			var sessionTimeoutSec = m_configService.GetConfigValue<uint>(ConfigKeys.SessionTimeSec);
 			var diff = DateTime.UtcNow - userInfo.LastLogin;
 
 			if (diff.TotalSeconds > sessionTimeoutSec)
