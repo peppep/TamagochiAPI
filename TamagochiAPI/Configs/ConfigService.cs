@@ -5,19 +5,21 @@ using System.Web;
 
 namespace TamagochiAPI.Configs
 {
-	internal enum ConfigKeys
+	public enum ConfigKeys
 	{
 		HappinessDecreaseStepSec,
 		HungryDecreaseStepSec,
 		SessionTimeSec,
 		DefaultHungryLevel,
-		DefaultHappinessLevel
+		DefaultHappinessLevel,
+		MinThreshold,
+		MaxThreshold
 	}
 
 	public interface IConfigService
 	{
-		T GetConfigValue<T>(string key1);
-		T GetConfigValue<T>(string key1, string key2);
+		T GetConfigValue<T>(ConfigKeys key1);
+		T GetConfigValue<T>(ConfigKeys key1, object key2);
 	}
 
 	public class ConfigService : IConfigService
@@ -32,16 +34,18 @@ namespace TamagochiAPI.Configs
 			parsedConfig = JObject.Parse(fileContent);
 		}
 
-		public T GetConfigValue<T>(string key1)
+		public T GetConfigValue<T>(ConfigKeys key1)
 		{
-			var res = parsedConfig[key1];
+			var res = parsedConfig[key1.ToString()];
 
 			return JsonConvert.DeserializeObject<T>(res.ToString());
 		}
 
-		public T GetConfigValue<T>(string key1, string key2)
+		public T GetConfigValue<T>(ConfigKeys key1, object key2)
 		{
-			var res = parsedConfig[key1][key2];
+			var k1 = key1.ToString();
+			var k2 = key2.ToString();
+			var res = parsedConfig[k1][k2];
 
 			return JsonConvert.DeserializeObject<T>(res.ToString());
 		}
