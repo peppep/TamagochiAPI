@@ -56,7 +56,7 @@ Temporary Items
 *.suo
 
 #directories
-/logs/
-/packages/
-/bin/
-/obj/
+*/logs/
+*/packages/
+*/bin/
+*/obj/
