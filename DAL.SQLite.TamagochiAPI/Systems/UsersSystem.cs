@@ -18,7 +18,8 @@ namespace TamagochiAPI.DAL.SQLite.Systems
 	{
 		public void AddUser(User userInfo)
 		{
-			var cmd = string.Format("insert into users(name, last_login) values('{0}', '{1}')", userInfo.Name, userInfo.LastLogin.ToString());
+			var cmd = string.Format("insert into users(name, last_login) values('{0}', '{1}')",
+				userInfo.Name, userInfo.LastLogin.ToString());
 			DBConnection.ExecuteNonQuery(cmd);
 		}
 
@@ -42,7 +43,8 @@ namespace TamagochiAPI.DAL.SQLite.Systems
 
 		public void UpdateLoginTime(uint userId, DateTime timeStamp)
 		{
-			var cmd = string.Format("update users set last_login = '{0}' where id = {1}", timeStamp.ToString(), userId.ToString());
+			var cmd = string.Format("update users set last_login = '{0}' where id = {1}",
+				timeStamp.ToString(), userId.ToString());
 			DBConnection.ExecuteNonQuery(cmd);
 		}
 	}

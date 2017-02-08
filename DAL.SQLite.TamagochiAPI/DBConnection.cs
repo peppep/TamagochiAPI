@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace TamagochiAPI.DAL.SQLite
 {
@@ -10,7 +9,11 @@ namespace TamagochiAPI.DAL.SQLite
 	{
 		private const string DbPath = "..\\..\\db_scripts\\tamagochi.db;";
 
-		public static string ConnectionString = "Data Source=" + AppDomain.CurrentDomain.BaseDirectory + DbPath + " Version=3; Foreign Keys=True;";
+		public static string ConnectionString =
+			"Data Source="
+			+ AppDomain.CurrentDomain.BaseDirectory
+			+ DbPath
+			+ " Version=3; Foreign Keys=True;";
 
 		private static DBConnection m_dbConnection;
 		private static object m_lock = new object();

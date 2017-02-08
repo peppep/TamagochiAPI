@@ -7,6 +7,8 @@ using Topshelf.ServiceConfigurators;
 
 namespace TamagochiAPI
 {
+	using Logger = Log.Log;
+
 	public class HostConfiguration
 	{
 		private IDisposable _webApplication;
@@ -14,11 +16,13 @@ namespace TamagochiAPI
 		public void Start()
 		{
 			Trace.WriteLine("Starting the service");
+			Logger.Info("Starting the service");
 			_webApplication = WebApp.Start<Startup>("http://localhost:8080");
 		}
 
 		public void Stop()
 		{
+			Logger.Info("Stopping the service");
 			_webApplication.Dispose();
 		}
 	}
@@ -27,11 +31,6 @@ namespace TamagochiAPI
 	{
 		static int Main(string[] argv)
 		{
-			//var address = "http://localhost:8080";
-			//using (var owin = WebApp.Start<Startup>(address))
-			//{
-			//	System.Console.ReadKey();
-			//}
 			var exitCode = HostFactory.Run(x =>
 			{
 				x.UseNinject();

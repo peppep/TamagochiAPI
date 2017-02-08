@@ -3,18 +3,15 @@
 
 namespace TamagochiAPI.App_Start
 {
-	using Ninject.Web.Common;
-	public static class NinjectWebCommon 
-{
-		private static readonly Bootstrapper bootstrapper = new Bootstrapper();
-
+	public static class NinjectWebCommon
+	{
 		/// <summary>
 		/// Starts the application
 		/// </summary>
-		public static void Start() 
+		public static void Start()
 		{
 		}
-        
+
 		/// <summary>
 		/// Stops the application.
 		/// </summary>

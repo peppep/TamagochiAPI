@@ -1,13 +1,13 @@
 ﻿using System;
 using TamagochiAPI.Common;
 using TamagochiAPI.Configs;
-using TamagochiAPI.DAL.SQLite.Models; // <-- Think about this!!!
+using TamagochiAPI.DAL.SQLite.Models;
 using TamagochiAPI.DAL.Wrappers;
 
 namespace TamagochiAPI.Services
 {
 	using System.Linq;
-	using Log = Log.Log;
+	using Logger = Log.Log;
 
 	public interface IUserService
 	{
@@ -33,15 +33,15 @@ namespace TamagochiAPI.Services
 			var res = new ResultInfo<EmptyResultData>();
 
 			var userResult = GetUser(userId);
-			if(userResult.IsEmpty())
+			if (userResult.IsEmpty())
 			{
 				res.ResultCode = ResultCode.UserNotFound;
-				Log.Warning("Trying to login with userId: {0}. User not found", userId);
+				Logger.Warning("Trying to login with userId: {0}. User not found", userId);
 				return res;
 			}
 
 			m_userWrapper.UpdateLoginTime(userId, DateTime.UtcNow);
-			Log.Info("User userId: {0} session started", userId);
+			Logger.Info("User userId: {0} session started", userId);
 
 			return new ResultInfo<EmptyResultData>();
 		}
@@ -60,12 +60,12 @@ namespace TamagochiAPI.Services
 				};
 
 				m_userWrapper.AddUser(user);
-				Log.Info("User with nickname: {0} added", nickname);
+				Logger.Info("User with nickname: {0} added", nickname);
 				return res;
 			}
 
 			res.ResultCode = ResultCode.NameRestricted;
-			Log.Warning("Trying create user with name: {0}. The name is in use", nickname);
+			Logger.Warning("Trying create user with name: {0}. The name is in use", nickname);
 			return res;
 		}
 
@@ -97,7 +97,7 @@ namespace TamagochiAPI.Services
 		{
 			if (userInfo == null)
 			{
-				Log.Warning("User with userId: {0} not found", userId);
+				Logger.Warning("User with userId: {0} not found", userId);
 				return ResultCode.UserNotFound;
 			}
 
@@ -106,7 +106,7 @@ namespace TamagochiAPI.Services
 
 			if (diff.TotalSeconds > sessionTimeoutSec)
 			{
-				Log.Warning("Trying to get userInfo for userId: {0}. Session is closed", userId);
+				Logger.Warning("Trying to get userInfo for userId: {0}. Session is closed", userId);
 				return ResultCode.SessionClosed;
 			}
 

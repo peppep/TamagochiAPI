@@ -13,10 +13,13 @@ using TamagochiAPI.Services;
 
 namespace TamagochiAPI
 {
+	using Logger = Log.Log;
+
 	public partial class Startup
   {
     public void Configuration(IAppBuilder app)
     {
+			Logger.Info("Configuring...");
 			var config = new HttpConfiguration();
 
 			config.Routes.MapHttpRoute(
@@ -46,6 +49,7 @@ namespace TamagochiAPI
 		
 		private static void RegisterServices(IKernel kernel)
 		{
+			Logger.Info("Registering dependencies...");
 			kernel.Bind<IUserService>().To<UsersService>();
 			kernel.Bind<IAnimalService>().To<AnimalService>();
 			kernel.Bind<IConfigService>().To<ConfigService>();

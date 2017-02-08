@@ -1,12 +1,14 @@
 ﻿using System;
-using TamagochiAPI.DAL.Wrappers;
-using TamagochiAPI.DAL.SQLite.Models;
-using TamagochiAPI.Configs;
-using TamagochiAPI.Common;
 using System.Linq;
+using TamagochiAPI.Common;
+using TamagochiAPI.Configs;
+using TamagochiAPI.DAL.SQLite.Models;
+using TamagochiAPI.DAL.Wrappers;
 
 namespace TamagochiAPI.Services
 {
+	using Logger = Log.Log;
+
 	public interface IAnimalService
 	{
 		ResultInfo<EmptyResultData> AddAnimal(string name, uint ownerId, AnimalType type);
@@ -40,8 +42,10 @@ namespace TamagochiAPI.Services
 			var res = new ResultInfo<KeyValue>();
 
 			var animalInfo = GetInfoWithRestrictions(res, animalId, userId);
-			if(animalInfo == null)
+			if (animalInfo == null)
 			{
+				Logger.Warning("Unable to process request 'feed' for animalId: {0} and userId: {1}. Reason: {3}",
+					animalId, userId, res.ResultCode.ToString());
 				return res;
 			}
 
@@ -64,13 +68,15 @@ namespace TamagochiAPI.Services
 			var animalInfo = GetInfoWithRestrictions(res, animalId, userId);
 			if (animalInfo == null)
 			{
+				Logger.Warning("Unable to process request 'play' for animalId: {0} and userId: {1}. Reason: {3}",
+					animalId, userId, res.ResultCode.ToString());
 				return res;
 			}
 
 			var happinessStep = m_configService.GetConfigValue<int>(
 				ConfigKeys.HappinessStep,
 				animalInfo.Type);
-			
+
 			var stat = CalculateStat(animalInfo, happinessStep, OperationType.Play);
 
 			m_animalsWrapper.Play(animalId, stat.Value);
@@ -95,6 +101,7 @@ namespace TamagochiAPI.Services
 			if (animalInfo == null)
 			{
 				res.ResultCode = ResultCode.AnimalNotFound;
+				Logger.Warning("Unable to find specified animal with id: {0}. Reason: {1}", animalId, res.ResultCode);
 				return res;
 			}
 
@@ -106,10 +113,11 @@ namespace TamagochiAPI.Services
 		{
 			var res = new ResultInfo<EmptyResultData>();
 
-			var userResult = m_usersService.GetUser(ownerId, needValidate:true);
+			var userResult = m_usersService.GetUser(ownerId, needValidate: true);
 			if (userResult.ResultCode != ResultCode.Ok)
 			{
 				res.ResultCode = userResult.ResultCode;
+				Logger.Warning("Unable to get specified user with id: {0}. Reason: {1}", ownerId, res.ResultCode);
 				return res;
 			}
 
@@ -117,6 +125,7 @@ namespace TamagochiAPI.Services
 			if (animalInfo != null)
 			{
 				res.ResultCode = ResultCode.NameRestricted;
+				Logger.Warning("Unable to add animal with name: {0}. This name is already used", name);
 				return res;
 			}
 
@@ -128,7 +137,7 @@ namespace TamagochiAPI.Services
 
 		private Animal GetInfoWithRestrictions(IOperationStatus res, uint animalId, uint userId = 0)
 		{
-			var userResult = m_usersService.GetUser(userId, needValidate:true);
+			var userResult = m_usersService.GetUser(userId, needValidate: true);
 			if (userResult.ResultCode != ResultCode.Ok)
 			{
 				res.ResultCode = userResult.ResultCode;
@@ -141,7 +150,7 @@ namespace TamagochiAPI.Services
 				res.ResultCode = ResultCode.AnimalNotFound;
 				return null;
 			}
-			
+
 			if (userId != 0 && animalInfo.OwnerId != userId)
 			{
 				res.ResultCode = ResultCode.NotBelongsToUser;
@@ -178,12 +187,16 @@ namespace TamagochiAPI.Services
 				var timeSinceLastAction = DateTime.UtcNow - animalInfo.LastFeedTime;
 				var changePoints = timeSinceLastAction.TotalSeconds / statsStep;
 				resultStat = (int)(animalInfo.HungryLevel - changePoints + statsStep);
+				Logger.Info("OperationType: {0}. Time since last action: {1}. Delta points: {2}. Resulting stat: {3}",
+					type, timeSinceLastAction, changePoints, resultStat);
 			}
 			else if (type == OperationType.Play)
 			{
 				var timeSinceLastAction = DateTime.UtcNow - animalInfo.LastPlayTime;
 				var changePoints = timeSinceLastAction.TotalSeconds / statsStep;
 				resultStat = (int)(animalInfo.HappinessLevel - changePoints + statsStep);
+				Logger.Info("OperationType: {0}. Time since last action: {1}. Delta points: {2}. Resulting stat: {3}",
+					type, timeSinceLastAction, changePoints, resultStat);
 			}
 
 			if (resultStat < minLevel)
