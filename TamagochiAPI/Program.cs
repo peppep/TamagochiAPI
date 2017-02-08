@@ -2,24 +2,24 @@
 using System;
 using System.Diagnostics;
 using Topshelf;
+using Topshelf.Ninject;
+using Topshelf.ServiceConfigurators;
 
 namespace TamagochiAPI
 {
-	public class HostingConfiguration : ServiceControl
+	public class HostConfiguration
 	{
 		private IDisposable _webApplication;
 
-		public bool Start(HostControl hostControl)
+		public void Start()
 		{
 			Trace.WriteLine("Starting the service");
 			_webApplication = WebApp.Start<Startup>("http://localhost:8080");
-			return true;
 		}
 
-		public bool Stop(HostControl hostControl)
+		public void Stop()
 		{
 			_webApplication.Dispose();
-			return true;
 		}
 	}
 
@@ -34,12 +34,22 @@ namespace TamagochiAPI
 			//}
 			var exitCode = HostFactory.Run(x =>
 			{
-				x.Service<HostingConfiguration>();
+				x.UseNinject();
+
+				x.Service<HostConfiguration>(service =>
+				{
+					ServiceConfigurator<HostConfiguration> s = service;
+					s.ConstructUsing(() => new HostConfiguration());
+					s.WhenStarted(a => a.Start());
+					s.WhenStopped(a => a.Stop());
+				});
+
 				x.RunAsLocalSystem();
 				x.SetDescription("Owin + Webapi as Windows service");
 				x.SetDisplayName("owin.webapi.test");
 				x.SetServiceName("owin.webapi.test");
 			});
+
 			return (int)exitCode;
 		}
 	}
