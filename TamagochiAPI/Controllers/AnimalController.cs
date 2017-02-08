@@ -7,7 +7,7 @@ using TamagochiAPI.Services;
 namespace TamagochiAPI.Controllers
 {
 	public class AnimalController : ApiController
-  {
+	{
 		private readonly IAnimalService m_animalService;
 
 		public AnimalController(IAnimalService animalService)
@@ -17,16 +17,16 @@ namespace TamagochiAPI.Controllers
 
 		// GET: api/Animal
 		//get all animals
-    public ResultInfo<Animal> Get()
-    {
+		public ResultInfo<Animal> Get()
+		{
 			return m_animalService.GetAnimals();
-    }
+		}
 
 		// GET: api/Animal/5
 		// get animalInfo
 		public ResultInfo<Animal> Get(int id)
-    {
-	    return m_animalService.GetAnimal((uint)id);
+		{
+			return m_animalService.GetAnimal((uint)id);
 		}
 
 		//POST: api/Animal
