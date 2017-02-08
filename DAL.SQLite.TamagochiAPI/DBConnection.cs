@@ -8,9 +8,9 @@ namespace TamagochiAPI.DAL.SQLite
 {
 	public class DBConnection
 	{
-		private const string DbPath = "..\\db_scripts\\tamagochi.db;";
+		private const string DbPath = "..\\..\\db_scripts\\tamagochi.db;";
 
-		public static string ConnectionString = "Data Source=" + HttpRuntime.AppDomainAppPath + DbPath + " Version=3; Foreign Keys=True;";
+		public static string ConnectionString = "Data Source=" + AppDomain.CurrentDomain.BaseDirectory + DbPath + " Version=3; Foreign Keys=True;";
 
 		private static DBConnection m_dbConnection;
 		private static object m_lock = new object();

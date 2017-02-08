@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Owin.Hosting;
 
 namespace TamagochiAPI.Client
 {
-	class Program
+	public class Program
 	{
-		static void Main(string[] args)
+		public static void Main(string[] args)
 		{
+			var address = "http://localhost:8080";
 
+			using (var owin = WebApp.Start<Startup>(address))
+			{
+
+			}
 		}
 	}
 }

@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.IO;
-using System.Web;
 
 namespace TamagochiAPI.Configs
 {
@@ -24,7 +24,7 @@ namespace TamagochiAPI.Configs
 
 	public class ConfigService : IConfigService
 	{
-		private static string ConfigPath = HttpRuntime.AppDomainAppPath + "Configs\\configuration.json";
+		private string ConfigPath = AppDomain.CurrentDomain.BaseDirectory + "..\\Configs\\configuration.json";
 
 		private readonly JObject parsedConfig;
 
