@@ -1,32 +1,23 @@
-﻿using Newtonsoft.Json;
-using RestSharp;
-using System;
-using TamagochiAPI.Common.Models;
-using TamagochiAPI.Common.OutputData;
+﻿using System;
 
 namespace TamagochiAPI.Client
 {
 	public class Program
 	{
+		internal static string Address = "http://localhost:8080";
+
 		public static void Main(string[] args)
 		{
-			var address = "http://localhost:8080";
+			if (args.Length < 1)
+			{
+				Console.WriteLine("Not enough args to run. Sample: TamagochiAPI.Client.exe 1\nPress any key...");
+				Console.ReadKey();
+				return;
+			}
+			var userId = uint.Parse(args[0]);
 
-			var client = new RestClient(address);
-
-			var request = new RestRequest("api/User/", Method.GET);
-
-			//var resp = client.ExecuteAsync<User>(request, r =>
-			//{
-			//	Console.WriteLine(r.Data.UserId);
-			//});
-
-			var rr = client.Execute<User>(request);
-			Console.WriteLine(rr.Data.Name);
-
-			var result = JsonConvert.DeserializeObject<ResultInfo<User>>(rr.Content);
-
-			//Console.WriteLine(resp);
+			var gameInstance = new Game(userId);
+			gameInstance.Run();
 		}
 	}
 }

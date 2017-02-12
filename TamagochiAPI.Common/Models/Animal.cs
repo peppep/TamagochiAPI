@@ -35,5 +35,17 @@ namespace TamagochiAPI.Common.Models
 			HungryLevel = int.Parse(reader[6].ToString());
 			LastFeedTime = new DateTime().FromString(reader[7].ToString());
 		}
+
+		public override string ToString()
+		{
+			return string.Format(
+				"animalId: {0}; Name: {1}; OwnerId: {2}; AnimalType: {3}; HappinessLevel: {4}; HungryLevel: {5}",
+				Id,
+				Name,
+				OwnerId,
+				Type,
+				HappinessLevel,
+				HungryLevel);
+		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Text;
 
 namespace TamagochiAPI.Common.OutputData
 {
@@ -49,6 +50,20 @@ namespace TamagochiAPI.Common.OutputData
 		public bool IsEmpty()
 		{
 			return !ResultData.Any();
+		}
+
+		public override string ToString()
+		{
+			var res = new StringBuilder();
+
+			res.AppendFormat("\nResultCode: {0}\n", ResultCode);
+			res.AppendLine("Obtained data:");
+			foreach (var data in ResultData)
+			{
+				res.AppendLine(data.ToString());
+			}
+
+			return res.ToString();
 		}
 	}
 }
