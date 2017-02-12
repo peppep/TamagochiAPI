@@ -47,7 +47,7 @@ namespace TamagochiAPI.DAL.SQLite.Systems
 
 		public Animal GetAnimalByName(string animalName)
 		{
-			var cmd = string.Format("select * from animals where name = {0}", animalName);
+			var cmd = string.Format("select * from animals where name = '{0}'", animalName);
 			return DBConnection.ExecuteReader<Animal>(cmd).Result.FirstOrDefault();
 		}
 

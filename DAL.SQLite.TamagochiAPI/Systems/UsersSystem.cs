@@ -31,7 +31,7 @@ namespace TamagochiAPI.DAL.SQLite.Systems
 
 		public User GetUserInfoByNick(string nickname)
 		{
-			var cmd = string.Format("select * from users where name = {0}", nickname);
+			var cmd = string.Format("select * from users where name = '{0}'", nickname);
 			return DBConnection.ExecuteReader<User>(cmd).Result.FirstOrDefault();
 		}
 
