@@ -44,8 +44,8 @@ namespace TamagochiAPI.Services
 			var animalInfo = GetInfoWithRestrictions(res, animalId, userId);
 			if (animalInfo == null)
 			{
-				Logger.Warning("Unable to process request 'feed' for animalId: {0} and userId: {1}. Reason: {3}",
-					animalId, userId, res.ResultCode.ToString());
+				Logger.Warning("Unable to process request 'feed' for animalId: {0} and userId: {1}. Reason: {2}",
+					animalId, userId, res.ResultCode);
 				return res;
 			}
 
@@ -68,8 +68,8 @@ namespace TamagochiAPI.Services
 			var animalInfo = GetInfoWithRestrictions(res, animalId, userId);
 			if (animalInfo == null)
 			{
-				Logger.Warning("Unable to process request 'play' for animalId: {0} and userId: {1}. Reason: {3}",
-					animalId, userId, res.ResultCode.ToString());
+				Logger.Warning("Unable to process request 'play' for animalId: {0} and userId: {1}. Reason: {2}",
+					animalId, userId, res.ResultCode);
 				return res;
 			}
 

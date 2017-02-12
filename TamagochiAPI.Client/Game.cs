@@ -9,11 +9,15 @@ namespace TamagochiAPI.Client
 	internal partial class Game
 	{
 		private uint m_userId;
+		private Random m_random;
+		private RequestRepository m_requestRepository;
 		private IDictionary<ConsoleKey, Action<uint>> m_commands;
 
 		internal Game(uint userId)
 		{
 			m_userId = userId;
+			m_random = new Random(DateTime.UtcNow.Millisecond);
+			m_requestRepository = new RequestRepository();
 			InitCommands();
 		}
 

@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using RestSharp;
-using System;
+﻿using System;
 using System.Linq;
 using TamagochiAPI.Client.Utils;
 using TamagochiAPI.Common.Models;
@@ -13,10 +11,7 @@ namespace TamagochiAPI.Client
 		[Command(ConsoleKey.U)]
 		public void GetUserInfo(uint userId)
 		{
-			var client = new RestClient(Program.Address);
-			var request = new RestRequest("api/User/", Method.GET);
-			var response = client.Execute(request);
-			var res = JsonConvert.DeserializeObject<ResultInfo<User>>(response.Content);
+			var res = m_requestRepository.Get<User>("api/User/");
 
 			var filteredResult = res.ResultData.Where(r => r.UserId == m_userId).ToList();
 
@@ -27,10 +22,7 @@ namespace TamagochiAPI.Client
 		[Command(ConsoleKey.A)]
 		public void GetAnimals(uint userId)
 		{
-			var client = new RestClient(Program.Address);
-			var request = new RestRequest("api/Animal/", Method.GET);
-			var response = client.Execute(request);
-			var res = JsonConvert.DeserializeObject<ResultInfo<Animal>>(response.Content);
+			var res = m_requestRepository.Get<Animal>("api/Animal/");
 
 			var filteredResult = res.ResultData.Where(r => r.OwnerId == m_userId).ToList();
 
@@ -41,11 +33,8 @@ namespace TamagochiAPI.Client
 		[Command(ConsoleKey.L)]
 		public void Login(uint userId)
 		{
-			var client = new RestClient(Program.Address);
-			var request = new RestRequest("api/User/{id}", Method.PUT);
-			request.AddUrlSegment("id", m_userId.ToString());
-			var response = client.Execute(request);
-			var res = JsonConvert.DeserializeObject<ResultInfo<EmptyResultData>>(response.Content);
+			var url = string.Format("api/User/{0}", m_userId);
+			var res = m_requestRepository.Put<EmptyResultData>(url);
 
 			Console.WriteLine(res.ToString());
 			ConsoleUtils.ShowFlowTip();
@@ -54,23 +43,44 @@ namespace TamagochiAPI.Client
 		[Command(ConsoleKey.P)]
 		public void Play(uint userId)
 		{
-			var client = new RestClient(Program.Address);
-			var request = new RestRequest("api/User/{id}/play/{animalId}", Method.PUT);
-			request.AddUrlSegment("id", m_userId.ToString());
-			var response = client.Execute(request);
-			var res = JsonConvert.DeserializeObject<ResultInfo<Animal>>(response.Content);
+			var randomAnimalId = GetUsersRandomAnimal();
+
+			var url = string.Format("api/User/{0}/play/{1}", m_userId, randomAnimalId ?? 0);
+			var res = m_requestRepository.Put<KeyValue>(url);
 
 			Console.WriteLine(res.ToString());
 			ConsoleUtils.ShowFlowTip();
 		}
 
-		private ResultInfo<T> Get<T>(string urlChunk)
+		[Command(ConsoleKey.F)]
+		public void Feed(uint userId)
 		{
-			var client = new RestClient(Program.Address);
-			var request = new RestRequest(urlChunk, Method.GET);
-			var response = client.Execute(request);
+			var randomAnimalId = GetUsersRandomAnimal();
 
-			return JsonConvert.DeserializeObject<ResultInfo<T>>(response.Content);
+			var url = string.Format("api/User/{0}/feed/{1}", m_userId, randomAnimalId ?? 0);
+			var res = m_requestRepository.Put<KeyValue>(url);
+
+			Console.WriteLine(res.ToString());
+			ConsoleUtils.ShowFlowTip();
+		}
+
+		private uint? GetUsersRandomAnimal()
+		{
+			var usersAnimals = m_requestRepository.Get<Animal>("api/Animal/");
+			var filteredResult = usersAnimals.ResultData.Where(r => r.OwnerId == m_userId).ToList();
+
+			if (!filteredResult.Any())
+			{
+				Console.WriteLine("You don't own any animal");
+				ConsoleUtils.ShowFlowTip();
+				return null;
+			}
+			return filteredResult.OrderBy(a => m_random.Next()).First().Id;
+		}
+
+		private string GetData()
+		{
+			return string.Empty;
 		}
 	}
 }
