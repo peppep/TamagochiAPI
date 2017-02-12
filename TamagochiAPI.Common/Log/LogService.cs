@@ -1,6 +1,6 @@
 ﻿using NLog;
 
-namespace TamagochiAPI.Log
+namespace TamagochiAPI.Common.Log
 {
 	public static class Log
 	{

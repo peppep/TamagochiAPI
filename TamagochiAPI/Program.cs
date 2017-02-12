@@ -7,7 +7,7 @@ using Topshelf.ServiceConfigurators;
 
 namespace TamagochiAPI
 {
-	using Logger = Log.Log;
+	using Logger = Common.Log.Log;
 
 	public class HostConfiguration
 	{

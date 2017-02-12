@@ -7,7 +7,7 @@ using TamagochiAPI.DAL.Wrappers;
 
 namespace TamagochiAPI.Services
 {
-	using Logger = Log.Log;
+	using Logger = Common.Log.Log;
 
 	public interface IAnimalService
 	{

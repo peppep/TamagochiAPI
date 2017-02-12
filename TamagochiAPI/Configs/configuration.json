@@ -1,18 +1,18 @@
 ﻿{
 	"HappinessStep": {
-		"Dog": 1,
-		"Cat": 5,
-		"Hamster": 5,
-		"Fish": 10,
-		"Snake": 10
+		"Dog": 10,
+		"Cat": 50,
+		"Hamster": 50,
+		"Fish": 100,
+		"Snake": 100
 	},
 
 	"HungerStep": {
-		"Dog": 5,
-		"Cat": 5,
-		"Hamster": 1,
-		"Fish": 3,
-		"Snake": 10
+		"Dog": 50,
+		"Cat": 50,
+		"Hamster": 10,
+		"Fish": 30,
+		"Snake": 100
 	},
 
 	"DefaultHungryLevel": 0,

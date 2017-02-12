@@ -38,19 +38,5 @@ namespace TamagochiAPI.Controllers
 		{
 			return m_animalService.AddAnimal(animal.Name, animal.OwnerId, animal.Type);
 		}
-
-		[HttpPut]
-		[Route("api/User/{userId:int}/feed/{animalId:int}")]
-		public ResultInfo<KeyValue> Feed(uint userId, uint animalId)
-		{
-			return m_animalService.Feed(userId, animalId);
-		}
-
-		[HttpPut]
-		[Route("api/User/{userId:int}/play/{animalId:int}")]
-		public ResultInfo<KeyValue> Play(uint userId, uint animalId)
-		{
-			return m_animalService.Play(userId, animalId);
-		}
 	}
 }

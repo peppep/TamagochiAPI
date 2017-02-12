@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 
 namespace TamagochiAPI.DAL.SQLite
 {
+	using Logger = Common.Log.Log;
+
 	public class DBConnection
 	{
 		private const string DbPath = "..\\..\\db_scripts\\tamagochi.db;";
@@ -63,7 +65,7 @@ namespace TamagochiAPI.DAL.SQLite
 					}
 					catch (SQLiteException ex)
 					{
-						Console.WriteLine(ex.Message);
+						Logger.Error(ex.Message);
 						throw ex;
 					}
 				}
