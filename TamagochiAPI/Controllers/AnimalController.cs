@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
-using TamagochiAPI.Common;
 using TamagochiAPI.Common.Models;
+using TamagochiAPI.Common.OutputData;
 using TamagochiAPI.RESTModelBinding;
 using TamagochiAPI.Services;
 

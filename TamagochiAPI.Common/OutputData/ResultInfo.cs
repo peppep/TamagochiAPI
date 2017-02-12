@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Runtime.Serialization;
 
-namespace TamagochiAPI.Common
+namespace TamagochiAPI.Common.OutputData
 {
 	public enum ResultCode
 	{
@@ -38,7 +38,7 @@ namespace TamagochiAPI.Common
 
 		public void AddData(T data)
 		{
-			if(data == null)
+			if (data == null)
 			{
 				return;
 			}

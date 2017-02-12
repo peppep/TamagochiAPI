@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TamagochiAPI.DAL.SQLite", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TamagochiAPI.Common", "TamagochiAPI.Common\TamagochiAPI.Common.csproj", "{CAEBEB10-FCA2-4D40-9F06-F0662AB804DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TamagochiAPI.Client", "TamagochiAPI.Client\TamagochiAPI.Client.csproj", "{D11DDC7B-694A-4B86-94FD-3C2E43C4065B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{CAEBEB10-FCA2-4D40-9F06-F0662AB804DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAEBEB10-FCA2-4D40-9F06-F0662AB804DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAEBEB10-FCA2-4D40-9F06-F0662AB804DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D11DDC7B-694A-4B86-94FD-3C2E43C4065B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D11DDC7B-694A-4B86-94FD-3C2E43C4065B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D11DDC7B-694A-4B86-94FD-3C2E43C4065B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D11DDC7B-694A-4B86-94FD-3C2E43C4065B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

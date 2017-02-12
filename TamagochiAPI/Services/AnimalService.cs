@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
-using TamagochiAPI.Common;
 using TamagochiAPI.Configs;
 using TamagochiAPI.DAL.Wrappers;
 
 namespace TamagochiAPI.Services
 {
 	using Common.Models;
+	using Common.OutputData;
 	using Logger = Common.Log.Log;
 
 	public interface IAnimalService

@@ -1,11 +1,11 @@
 ﻿using System;
-using TamagochiAPI.Common;
 using TamagochiAPI.Configs;
 using TamagochiAPI.DAL.Wrappers;
 
 namespace TamagochiAPI.Services
 {
 	using Common.Models;
+	using Common.OutputData;
 	using System.Linq;
 	using Logger = Common.Log.Log;
 

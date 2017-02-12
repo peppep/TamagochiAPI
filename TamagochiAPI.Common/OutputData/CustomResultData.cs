@@ -1,4 +1,4 @@
-﻿namespace TamagochiAPI.Common
+﻿namespace TamagochiAPI.Common.OutputData
 {
 	public abstract class EmptyResultData
 	{

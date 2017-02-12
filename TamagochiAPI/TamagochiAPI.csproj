@@ -250,8 +250,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="OutputData\CustomResultData.cs" />
-    <Compile Include="OutputData\ResultInfo.cs" />
     <Compile Include="Configs\ConfigService.cs" />
     <Compile Include="Controllers\AnimalController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -291,7 +289,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL.SQLite.TamagochiAPI\TamagochiAPI.DAL.SQLite.csproj">
-      <Project>{2A9E5B7A-1B8B-42AB-A63D-967B7B079E99}</Project>
+      <Project>{2a9e5b7a-1b8b-42ab-a63d-967b7b079e99}</Project>
       <Name>TamagochiAPI.DAL.SQLite</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL.TamagochiAPI\TamagochiAPI.DAL.csproj">

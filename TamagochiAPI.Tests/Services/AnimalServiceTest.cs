@@ -1,7 +1,7 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
-using TamagochiAPI.Common;
 using TamagochiAPI.Common.Models;
+using TamagochiAPI.Common.OutputData;
 using TamagochiAPI.Configs;
 using TamagochiAPI.DAL.Wrappers;
 using TamagochiAPI.Services;
