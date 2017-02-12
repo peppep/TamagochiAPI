@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data.Common;
-using TamagochiAPI.DAL.SQLite.Utils;
+using TamagochiAPI.Common.Utils;
 
-namespace TamagochiAPI.DAL.SQLite.Models
+namespace TamagochiAPI.Common.Models
 {
 	public enum AnimalType
 	{

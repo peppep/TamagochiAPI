@@ -49,6 +49,10 @@
       <Project>{2a9e5b7a-1b8b-42ab-a63d-967b7b079e99}</Project>
       <Name>TamagochiAPI.DAL.SQLite</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TamagochiAPI.Common\TamagochiAPI.Common.csproj">
+      <Project>{caebeb10-fca2-4d40-9f06-f0662ab804da}</Project>
+      <Name>TamagochiAPI.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

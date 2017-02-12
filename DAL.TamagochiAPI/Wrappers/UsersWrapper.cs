@@ -1,7 +1,7 @@
-﻿using TamagochiAPI.DAL.SQLite.Systems;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using TamagochiAPI.DAL.SQLite.Models;
+using TamagochiAPI.Common.Models;
+using TamagochiAPI.DAL.SQLite.Systems;
 
 namespace TamagochiAPI.DAL.Wrappers
 {
@@ -42,7 +42,7 @@ namespace TamagochiAPI.DAL.Wrappers
 		{
 			return m_userSystem.GetUsersInfo();
 		}
-		
+
 		public void UpdateLoginTime(uint userId, DateTime timeStamp)
 		{
 			m_userSystem.UpdateLoginTime(userId, timeStamp);

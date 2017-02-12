@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 using TamagochiAPI.Common;
-using TamagochiAPI.DAL.SQLite.Models;
+using TamagochiAPI.Common.Models;
 using TamagochiAPI.RESTModelBinding;
 
 using TamagochiAPI.Services;
@@ -32,7 +32,7 @@ namespace TamagochiAPI.Controllers
 
 		// POST: api/User
 		// create user
-		//{'Name' : 'puup'}
+		//{ 'Nickname' : 'puup' }
 		public ResultInfo<EmptyResultData> Post([FromBody]UserNicknameModelBinding user)
 		{
 			return m_userService.CreateUser(user.Nickname);

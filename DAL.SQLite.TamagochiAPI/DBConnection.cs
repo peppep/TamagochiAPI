@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace TamagochiAPI.DAL.SQLite
 {
+	using Common;
 	using Logger = Common.Log.Log;
 
 	public class DBConnection

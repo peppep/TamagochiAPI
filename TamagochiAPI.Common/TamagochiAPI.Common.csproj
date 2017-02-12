@@ -49,8 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IDBSerializer.cs" />
     <Compile Include="Log\LogService.cs" />
+    <Compile Include="Models\Animal.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\DateTimeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

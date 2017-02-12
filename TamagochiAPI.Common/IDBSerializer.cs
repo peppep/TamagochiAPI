@@ -1,7 +1,6 @@
 ﻿using System.Data.Common;
-using System.Data.SQLite;
 
-namespace TamagochiAPI.DAL.SQLite
+namespace TamagochiAPI.Common
 {
 	public interface IDBSerializer<T>
 	{

@@ -86,6 +86,10 @@
       <Project>{3bbee4a6-3be1-4f71-bbf3-78187054bc09}</Project>
       <Name>TamagochiAPI.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TamagochiAPI.Common\TamagochiAPI.Common.csproj">
+      <Project>{caebeb10-fca2-4d40-9f06-f0662ab804da}</Project>
+      <Name>TamagochiAPI.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TamagochiAPI\TamagochiAPI.csproj">
       <Project>{0aa17b24-c3c7-4803-b0eb-4c67d47c970b}</Project>
       <Name>TamagochiAPI</Name>

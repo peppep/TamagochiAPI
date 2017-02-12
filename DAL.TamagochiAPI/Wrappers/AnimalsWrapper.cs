@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TamagochiAPI.DAL.SQLite.Models;
+using TamagochiAPI.Common.Models;
 using TamagochiAPI.DAL.SQLite.Systems;
 
 namespace TamagochiAPI.DAL.Wrappers

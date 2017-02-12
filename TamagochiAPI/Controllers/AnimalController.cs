@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 using TamagochiAPI.Common;
-using TamagochiAPI.DAL.SQLite.Models;
+using TamagochiAPI.Common.Models;
 using TamagochiAPI.RESTModelBinding;
 using TamagochiAPI.Services;
 
@@ -31,9 +31,9 @@ namespace TamagochiAPI.Controllers
 
 		//POST: api/Animal
 		// add new animal
-		//{'Name' : 'puup',
+		//{ 'Name' : 'puup',
 		//'OwnerId' : 1,
-		//'Type': 3}
+		//'Type': 3 }
 		public ResultInfo<EmptyResultData> Post(AnimalDataModelBinding animal)
 		{
 			return m_animalService.AddAnimal(animal.Name, animal.OwnerId, animal.Type);

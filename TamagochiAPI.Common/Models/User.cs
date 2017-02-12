@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Data.Common;
-using System.Data.SQLite;
-using TamagochiAPI.DAL.SQLite.Utils;
+using TamagochiAPI.Common.Utils;
 
-namespace TamagochiAPI.DAL.SQLite.Models
+namespace TamagochiAPI.Common.Models
 {
 	public class User : IDBSerializer<User>
 	{
 		public uint UserId { get; set; }
 		public string Name { get; set; }
 		public DateTime LastLogin { get; set; }
-		
+
 		public void Deserialize(DbDataReader reader)
 		{
 			UserId = uint.Parse(reader[0].ToString());

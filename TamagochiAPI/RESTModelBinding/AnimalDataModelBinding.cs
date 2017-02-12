@@ -1,4 +1,4 @@
-﻿using TamagochiAPI.DAL.SQLite.Models;
+﻿using TamagochiAPI.Common.Models;
 
 namespace TamagochiAPI.RESTModelBinding
 {

@@ -1,10 +1,10 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
+using TamagochiAPI.Common;
+using TamagochiAPI.Common.Models;
 using TamagochiAPI.Configs;
 using TamagochiAPI.DAL.Wrappers;
 using TamagochiAPI.Services;
-using TamagochiAPI.DAL.SQLite.Models;
-using TamagochiAPI.Common;
 
 namespace TamagochiAPI.Tests.Services
 {
@@ -19,7 +19,7 @@ namespace TamagochiAPI.Tests.Services
 		private IAnimalsWrapper m_animalsWrapper;
 		private IUserService m_usersService;
 		private IConfigService m_configService;
-		
+
 		[SetUp]
 		public void SetUp()
 		{

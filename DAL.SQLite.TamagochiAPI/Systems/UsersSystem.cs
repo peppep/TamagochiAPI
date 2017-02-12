@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TamagochiAPI.DAL.SQLite.Models;
+using TamagochiAPI.Common.Models;
 
 namespace TamagochiAPI.DAL.SQLite.Systems
 {
