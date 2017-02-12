@@ -93,7 +93,7 @@ namespace TamagochiAPI.DAL.SQLite
 					}
 					catch (SQLiteException ex)
 					{
-						Console.WriteLine(ex.Message);
+						Logger.Error(ex.Message);
 					}
 				}
 			}

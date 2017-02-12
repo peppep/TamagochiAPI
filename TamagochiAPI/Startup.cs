@@ -13,14 +13,16 @@ using TamagochiAPI.Services;
 
 namespace TamagochiAPI
 {
-	using Logger = Log.Log;
+	using Logger = Common.Log.Log;
 
 	public partial class Startup
-  {
-    public void Configuration(IAppBuilder app)
-    {
+	{
+		public void Configuration(IAppBuilder app)
+		{
 			Logger.Info("Configuring...");
 			var config = new HttpConfiguration();
+
+			config.MapHttpAttributeRoutes();
 
 			config.Routes.MapHttpRoute(
 								name: "DefaultApi",
@@ -46,7 +48,7 @@ namespace TamagochiAPI
 				throw;
 			}
 		}
-		
+
 		private static void RegisterServices(IKernel kernel)
 		{
 			Logger.Info("Registering dependencies...");
